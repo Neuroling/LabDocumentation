@@ -1,0 +1,31 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+parts:
+- caption: Misc tools
+  chapters:
+  - file: 0-General_tools/GUIDE_Jupyter book
+  - file: 0-General_tools/GUIDE_python
+  - file: 0-General_tools/GUIDE_Web_building_in_R_markdown
+  - file: 0-General_tools/GUIDE_ScienceCloud
+
+- caption: Data Collection
+  chapters:
+  - file: 1-Data_Collection/GUIDE_Google text-to-speech
+  - file: 1-Data_Collection/GUIDE_prolific_gorilla
+  - file: 1-Data_Collection/GUIDE_psychopy
+  - file: 1-Data_Collection/GUIDE_Redcap
+
+- caption: Analysis
+  chapters:
+  - file: 2-Analysis/GUIDE_EEG
+  - file: 2-Analysis/GUIDE_MachineLearning
+  - file: 2-Analysis/GUIDE_MNE
+  - file: 2-Analysis/GUIDE_openvibe
+
+- caption: Reproducibility
+  chapters:
+  - file: 3-Reproducibility/GUIDE_Github
+  - file: 3-Reproducibility/GUIDE_BIDS
