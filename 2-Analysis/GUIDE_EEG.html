@@ -1,0 +1,589 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>EEG features &#8212; Neuroling Lab Documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Machine learning decoding" href="GUIDE_MachineLearning.html" />
+    <link rel="prev" title="Redcap - setup" href="../1-Data_Collection/GUIDE_Redcap.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Neuroling Lab Documentation</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Misc tools
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../0-General_tools/GUIDE_Jupyter%20book.html">
+   Jupyter book
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../0-General_tools/GUIDE_python.html">
+   Python - setup
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../0-General_tools/GUIDE_Web_building_in_R_markdown.html">
+   Website in R markdown
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../0-General_tools/GUIDE_ScienceCloud.html">
+   Science Cloud settings
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Data Collection
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../1-Data_Collection/GUIDE_Google%20text-to-speech.html">
+   Google text-to-speech
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../1-Data_Collection/GUIDE_prolific_gorilla.html">
+   Gorilla
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../1-Data_Collection/GUIDE_psychopy.html">
+   PsychoPy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../1-Data_Collection/GUIDE_Redcap.html">
+   Redcap - setup
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Analysis
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   EEG features
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="GUIDE_MachineLearning.html">
+   Machine learning decoding
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="GUIDE_MNE.html">
+   MNE toolbox
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="GUIDE_openvibe.html">
+   Openvibe
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Reproducibility
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../3-Reproducibility/GUIDE_Github.html">
+   Github
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../3-Reproducibility/GUIDE_BIDS.html">
+   Brain Imaging Data Structure - BIDS
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/Neuroling/LabDocumentation"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/Neuroling/LabDocumentation/issues/new?title=Issue%20on%20page%20%2F2-Analysis/GUIDE_EEG.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/2-Analysis/GUIDE_EEG.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#time-frequency-analysis">
+   Time-frequency analysis
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#wavelets">
+     Wavelets
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-cone-of-influence">
+       The ‘cone’ of influence
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#preprocessing">
+     Preprocessing
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>EEG features</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#time-frequency-analysis">
+   Time-frequency analysis
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#wavelets">
+     Wavelets
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-cone-of-influence">
+       The ‘cone’ of influence
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#preprocessing">
+     Preprocessing
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="eeg-features">
+<h1>EEG features<a class="headerlink" href="#eeg-features" title="Permalink to this headline">#</a></h1>
+<section id="time-frequency-analysis">
+<h2>Time-frequency analysis<a class="headerlink" href="#time-frequency-analysis" title="Permalink to this headline">#</a></h2>
+<p>Here we study the changes in power at the different frequencies over time. This contrasts with a ‘static’ spectral analysis where we examine the spectral distribution of an entire time period (e.g., using a Fast Fourier Transform-FFT). To capture the temporal dynamics of frequencies we repeatedly perform the dot product of the EEG signal by a wavelet that is sliding/shifting overtime. This way we obtain the power distribution at each time point. Besides complex wavelet convolution, other commonly used methods are the short-time fast Fourier transform and filter-Hilbert (not covered in this section).</p>
+<p>This approach allows, among others, the analysis of Event Related Spectral Perturbations (<strong>ERSP</strong>) and Inter-trial Phase Coherence (<strong>ITC</strong>).</p>
+<p>EEGlab team provides a detailed <a class="reference external" href="https://www.youtube.com/watch?v=eUFf5eFpdLg&amp;t=240s&amp;ab_channel=EEGLAB">video lecture on EEG time-frequency analysis</a></p>
+<section id="wavelets">
+<h3>Wavelets<a class="headerlink" href="#wavelets" title="Permalink to this headline">#</a></h3>
+<p>A primary method for time-frequency analysis is the wavelet convolution. There are different kinds of wavelets and they have two main properties: (1) they tapper down to zero (at the beginning and the end) and (2) they integrates to zero (positive and negative parts would average out to zero). A frequently used wavelet is the Morlet wavelet, which can be created by point-wise multiplication of a Sine wave and Gaussian function (Gaussian-modulated sinusoid)</p>
+<p>A real-valued Morlet (convolution with EEG signal will give us <em>amplitude</em> values at each time point):</p>
+<p><img src='https://user-images.githubusercontent.com/13642762/208658414-236ae8f6-cc09-4d18-998d-e22901ed2d37.gif' height = '150px' width = '250px'> <img src='https://user-images.githubusercontent.com/13642762/208658801-befbbc18-d9d2-4735-b438-19115ea5260f.png' height = '150px' width = '250px'> <img src = 'https://user-images.githubusercontent.com/13642762/208659831-43075e06-c3a4-471a-8c6d-30dd869e0730.png' height='140px' width='250px' ></p>
+<p>A complex-valued Morlet wavelet (the result of the convolution with the EEG signal will give us a complex value for each time point, allowing to extract instantaneous <em>power</em> as well as <em>phase angle</em> information):</p>
+<img src='https://user-images.githubusercontent.com/13642762/208878213-6160bda5-0c51-48de-aa82-78f2976da054.gif' height='400px' width='600px'>
+<p>There are several basic considerations when running a time frequency analysis:</p>
+<ul class="simple">
+<li><p>Sampling rate. Typically downsampling to to 250 Hz is done to reduce file size and computation time</p></li>
+<li><p>Frequencies to analyse. Depending on hypotheses. But it is recommended that the data have at least 3 full cycles of the lowest frequency to analyze, and higher frequency must be below Nyquist frequency (1/2 of sampling rate)</p></li>
+</ul>
+<p>A key parameter of the Morlet that will have an impact in <em>temporal and spectral precision</em> of our analysis:</p>
+<ul class="simple">
+<li><p><em>Width</em> of the wavelet or number of <strong>cycles</strong>: more cycles increase frequency precision (we can capture more frequency bins) and fewer cycles increases temporal precision (we can capture more data point). We can alslo use fewer cycles at lower frequenceis and gradually increase the number of cycles as frequency increases, thus having more temporal precision at lower frequencies and more frequency precision at higher frequencies.</p></li>
+<li><p>The time-frequency trade off can also be described in terms of <em>full-with at half-maximum</em>(<strong>FWHM</strong>) in the time and/or frequency domain. See <a class="reference external" href="https://doi.org/10.1016/j.neuroimage.2019.05.048">Cohen,2019</a> for an article arguing about the relevance of this term. The FWHM is the distance in time between 50 % gain before the peak to 50% gain after the peak</p></li>
+</ul>
+<img src='https://user-images.githubusercontent.com/13642762/208679988-6fd496fc-55ba-4847-a65d-bfed329f2dc1.png' height='200px' width='300px'>
+<p><sub>Cohen 2019</sub></p>
+<p>Illustration of wavelet convolution:</p>
+<img src='https://user-images.githubusercontent.com/13642762/208693831-a8c77e31-8413-4590-bcb1-f72e5965e04a.png'  height = '310px' width ='300px'>
+<sub> [Morales and Bowers, 2022](https://www.sciencedirect.com/science/article/pii/S1878929322000111)</sub>
+<p>An example of TF results visualization (scalogram):</p>
+ <img src='https://user-images.githubusercontent.com/13642762/208690235-41937eac-b838-4cd4-8668-8f8aee54e54b.png' height = '210px' width ='300px'>
+<p><sub> Morales and Bowers, 2022</sub></p>
+<p>See a recent comprehensive review on <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S1878929322000111">Morales and Bowers, 2022</a></p>
+<section id="the-cone-of-influence">
+<h4>The ‘cone’ of influence<a class="headerlink" href="#the-cone-of-influence" title="Permalink to this headline">#</a></h4>
+<p>Wavelet coefficients are computed by convolving the wavelet kernel with the time series. Similarly to any convolution of signals, there is zero padding at the edges of the time series and therefore the wavelet coefficients are weaker at the beginning and end of the time series. In addition we can have an event we are not interested in, for instance, we may look at prestimulus interval in a larger epoch containing post stimulus activity and want to avoid the times immediately before 0 where stimulus.</p>
+<p>The cone of influence <a class="reference external" href="https://ch.mathworks.com/help/wavelet/ug/boundary-effects-and-the-cone-of-influence.html">see COI-matlab documentation</a>, are areas in the scalogram potentially affected by edge-effect artifacts. These arise from areas where the stretched wavelets extend beyond the edges of the observation interval.  These are referred as edge effects in continuous wavelet transform (CWT). Some analyses, for example, compute the COI for the time windows of interest and only take the wavelet coefficients inside the respective COI.</p>
+<img src='https://user-images.githubusercontent.com/13642762/208690651-3e6f1451-cab3-46c5-9f69-2f3daa1a2fd2.png' height = '210px' width ='300px'>
+<p><sub>An example of COI from <a class="reference external" href="https://www.frontiersin.org/articles/10.3389/fnins.2020.00290/full">Dash et al., 2020</a> </sub></p>
+<p>There is a further discussion on this on the EEGlab Wiki: <a class="reference external" href="https://sccn.ucsd.edu/wiki/Makoto%27s_preprocessing_pipeline">https://sccn.ucsd.edu/wiki/Makoto’s_preprocessing_pipeline</a></p>
+</section>
+</section>
+<section id="preprocessing">
+<h3>Preprocessing<a class="headerlink" href="#preprocessing" title="Permalink to this headline">#</a></h3>
+<p>Good summary of common artifacts:
+<a class="reference external" href="https://pressrelease.brainproducts.com/eeg-artifacts-handling-in-analyzer/">https://pressrelease.brainproducts.com/eeg-artifacts-handling-in-analyzer/</a></p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./2-Analysis"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../1-Data_Collection/GUIDE_Redcap.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Redcap - setup</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="GUIDE_MachineLearning.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Machine learning decoding</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By G Fraga Gonzalez<br/>
+  
+      &copy; Copyright 2022.<br/>
+    <div class="extra_footer">
+      This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 Unported License.
+
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
