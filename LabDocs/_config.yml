@@ -1,8 +1,8 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-title: Neuroling Lab Documentation
-author: G Fraga Gonzalez
+title: Neuroling Lab Documentation <a href="https://neuroling.github.io">[neuroling.github.io]</a>
+author: Neuling Team
 logo: logo.png
 
 # Force re-execution of notebooks on each build.
@@ -35,4 +35,4 @@ html:
   use_repository_button: true
   extra_footer: |
    This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 Unported License.
-
+  
