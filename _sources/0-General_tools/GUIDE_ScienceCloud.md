@@ -27,9 +27,11 @@ It is the responsability the user to keep the VM up to date! some of the regular
 - `sudo apt upgrade`
 - Critical updates will be regular. This process will have to be done regularly when working on the VM. It needs maintainance  constant `sudo unattended-upgrade`
 
-### 1.3. Install Mate-minimal 
+### 1.3. Install Mate-minimal
 - `sudo apt install tasksel`
-- `sudo tasksel` and select Mate-minimal (use arrow keys and spacebar to select, press tab to go to the OK button)  
+- `sudo tasksel` 
+- In the new menu select Mate-minimal (but leave the boxes with an asterisk as they are or you will uninstall things!!!!) 
+- Use arrow keys and spacebar to select, press tab to go to the OK button)   
 
 ### 1.4. Create user 
  > **IMPORTANT SAFETY NOTE**  
@@ -51,7 +53,8 @@ It is the responsability the user to keep the VM up to date! some of the regular
 ### 1.6. Attach a NAS
 - `sudo apt install cifs-utils`
 - If not created yet create the directory `sudo mkdir /mnt/smbdir`
-- Mont the NAS: `sudo mount -t cifs -o rw,user=<uzh_username>,uid=<instance_username> //<nas_address> /mnt/smbdir`
+- Mount the NAS: `sudo mount -t cifs -o rw,user=<uzh_username>,uid=<instance_username> //<nas_address> /mnt/smbdir` ( *uid* will most likely be 'ubuntu')
+
 
 ## 2 Working in the Linux Virtual Machine
 With the right workflow the need for the VM graphical environment will be minimal
