@@ -626,8 +626,10 @@ It is the responsability the user to keep the VM up to date! some of the regular
 <h4>via remote desktop<a class="headerlink" href="#via-remote-desktop" title="Permalink to this headline">#</a></h4>
 <ul class="simple">
 <li><p>In the VM linux console: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">xrdp</span></code></p></li>
-<li><p>In the <strong>science cloud dashboard</strong>: go to <em>Access &amp; security</em> and then to create a new group and <em>Manage rules</em> there you can create a custom TCP rule with the port 3389. Direction = ingress. Create the rule and delete other rules in that group</p></li>
-<li><p>In the <strong>science cloud dashboard</strong>: go to your instance and <em>edit security groups</em> . Add the newly created group together wtih the default group into the VM groups</p></li>
+<li><p>In the <strong>science cloud dashboard</strong>: go to <em>Access &amp; security</em> and then to create a new group. It should have a 2 ‘egresss’ fields. Then go to and <em>Manage rules</em> there you can create a custom TCP rule with the port 3389. Direction = ingress. Create the rule. The group should only have those two default egress rules and one ingress with 3389</p></li>
+<li><p>In the <strong>science cloud dashboard</strong>: go to your instance and <em>edit security groups</em> . Add the newly created group together with the default group into the VM groups</p></li>
+<li><p>You will need to be in the machine with ssh (in windows power shell <code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">ubuntu&#64;&lt;instance</span> <span class="pre">ip&gt;</span></code></p></li>
+<li><p>Then you can open remote desktop and access the machine with: <code class="docutils literal notranslate"><span class="pre">&lt;ip&gt;:3389</span></code></p></li>
 </ul>
 </section>
 </section>

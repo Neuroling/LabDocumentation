@@ -47,15 +47,16 @@ It is the responsability the user to keep the VM up to date! some of the regular
  - Simply click on the instance and in the *console* you will see the desktop environment window
 #### via remote desktop 
  - In the VM linux console: `sudo apt install xrdp`
- - In the **science cloud dashboard**: go to *Access & security* and then to create a new group and *Manage rules* there you can create a custom TCP rule with the port 3389. Direction = ingress. Create the rule and delete other rules in that group
- - In the **science cloud dashboard**: go to your instance and *edit security groups* . Add the newly created group together wtih the default group into the VM groups
+ - In the **science cloud dashboard**: go to *Access & security* and then to create a new group. It should have a 2 'egresss' fields. Then go to and *Manage rules* there you can create a custom TCP rule with the port 3389. Direction = ingress. Create the rule. The group should only have those two default egress rules and one ingress with 3389  
+ - In the **science cloud dashboard**: go to your instance and *edit security groups* . Add the newly created group together with the default group into the VM groups
+ - You will need to be in the machine with ssh (in windows power shell `ssh ubuntu@<instance ip>` 
+ - Then you can open remote desktop and access the machine with: `<ip>:3389`
 
 ### 1.6. Attach a NAS
 - `sudo apt install cifs-utils`
 - If not created yet, create the directory `sudo mkdir /mnt/smbdir`
 - Mount the NAS: `sudo mount -t cifs -o rw,user=<uzh_username>,uid=<user> //<nas_address> /mnt/smbdir` ( user will be your ubuntu user id)
 e.g., `sudo mount -t cifs -o rw,user=gfraga,uid=pepitogrillo //idnas12.d.uzh.ch/XX$ /mnt/smbdir` 
-
 
 
 ### 1.7 Matlab  
