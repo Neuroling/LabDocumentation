@@ -171,7 +171,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Analysis
+  EEG Analysis
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -436,6 +436,11 @@ title="Print to PDF"
      1.6. Attach a NAS
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#matlab-and-nas-permissions-issues">
+     1.7 Matlab and NAS Permissions issues
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -521,6 +526,11 @@ title="Print to PDF"
      1.6. Attach a NAS
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#matlab-and-nas-permissions-issues">
+     1.7 Matlab and NAS Permissions issues
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -587,7 +597,9 @@ It is the responsability the user to keep the VM up to date! some of the regular
 <h3>1.3. Install Mate-minimal<a class="headerlink" href="#install-mate-minimal" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">tasksel</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">tasksel</span></code> and select Mate-minimal (use arrow keys and spacebar to select, press tab to go to the OK button)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">tasksel</span></code></p></li>
+<li><p>In the new menu select Mate-minimal (but leave the boxes with an asterisk as they are or you will uninstall things!!!!)</p></li>
+<li><p>Use arrow keys and spacebar to select, press tab to go to the OK button)</p></li>
 </ul>
 </section>
 <section id="create-user">
@@ -624,7 +636,16 @@ It is the responsability the user to keep the VM up to date! some of the regular
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">cifs-utils</span></code></p></li>
 <li><p>If not created yet create the directory <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">mkdir</span> <span class="pre">/mnt/smbdir</span></code></p></li>
-<li><p>Mont the NAS: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">mount</span> <span class="pre">-t</span> <span class="pre">cifs</span> <span class="pre">-o</span> <span class="pre">rw,user=&lt;uzh_username&gt;,uid=&lt;instance_username&gt;</span> <span class="pre">//&lt;nas_address&gt;</span> <span class="pre">/mnt/smbdir</span></code></p></li>
+<li><p>Mount the NAS: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">mount</span> <span class="pre">-t</span> <span class="pre">cifs</span> <span class="pre">-o</span> <span class="pre">rw,user=&lt;uzh_username&gt;,uid=&lt;instance_username&gt;</span> <span class="pre">//&lt;nas_address&gt;</span> <span class="pre">/mnt/smbdir</span></code> ( <em>uid</em> will most likely be ‘ubuntu’)</p></li>
+</ul>
+</section>
+<section id="matlab-and-nas-permissions-issues">
+<h3>1.7 Matlab and NAS Permissions issues<a class="headerlink" href="#matlab-and-nas-permissions-issues" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>To open Matlab in the graphical envirnment you need to open <code class="docutils literal notranslate"><span class="pre">MATE</span> <span class="pre">terminal</span></code> and type <code class="docutils literal notranslate"><span class="pre">matlab</span></code>. <strong>HOWEVER</strong>, if your have sudo privilages you won’t be able to write and read stuff in the NAS!</p></li>
+<li><p>You can give sudo privilages to your user. Beware you will give admin privilages to your password-protected. From the terminal where you are a root user (e.g. powersell in Windows where you did ssh to the machine, do <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">usermod</span> <span class="pre">-aG</span> <span class="pre">sudo</span> <span class="pre">&lt;user&gt;</span></code></p></li>
+<li><p>Then in the graphical environment you can do <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">-s</span></code> and type in the password you set up for your user</p></li>
+<li><p>Then in MATE terminal you should be able to open Matlab as admin. This is not ideal and there might be other ways. But so far Matlab cannot read or write in the NAS without openining it as admin</p></li>
 </ul>
 </section>
 </section>
