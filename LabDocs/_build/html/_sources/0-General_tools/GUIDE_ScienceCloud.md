@@ -47,22 +47,33 @@ It is the responsability the user to keep the VM up to date! some of the regular
  - Simply click on the instance and in the *console* you will see the desktop environment window
 #### via remote desktop 
  - In the VM linux console: `sudo apt install xrdp`
- - In the **science cloud dashboard**: go to *Access & security* and then to create a new group and *Manage rules* there you can create a custom TCP rule with the port 3389. Direction = ingress. Create the rule and delete other rules in that group
- - In the **science cloud dashboard**: go to your instance and *edit security groups* . Add the newly created group together wtih the default group into the VM groups
+ - In the **science cloud dashboard**: go to *Access & security* and then to create a new group. It should have a 2 'egresss' fields. Then go to and *Manage rules* there you can create a custom TCP rule with the port 3389. Direction = ingress. Create the rule. The group should only have those two default egress rules and one ingress with 3389  
+ - In the **science cloud dashboard**: go to your instance and *edit security groups* . Add the newly created group together with the default group into the VM groups
+ - You will need to be in the machine with ssh (in windows power shell `ssh ubuntu@<instance ip>` 
+ - Then you can open remote desktop and access the machine with: `<ip>:3389`
 
 ### 1.6. Attach a NAS
 - `sudo apt install cifs-utils`
-- If not created yet create the directory `sudo mkdir /mnt/smbdir`
-- Mount the NAS: `sudo mount -t cifs -o rw,user=<uzh_username>,uid=<instance_username> //<nas_address> /mnt/smbdir` ( *uid* will most likely be 'ubuntu')
+- If not created yet, create the directory `sudo mkdir /mnt/smbdir`
+- Mount the NAS: `sudo mount -t cifs -o rw,user=<uzh_username>,uid=<user> //<nas_address> /mnt/smbdir` ( user will be your ubuntu user id)
+e.g., `sudo mount -t cifs -o rw,user=gfraga,uid=pepitogrillo //idnas12.d.uzh.ch/XX$ /mnt/smbdir` 
 
-### 1.7 Matlab and NAS Permissions issues
-- To open Matlab in the graphical envirnment you need to open `MATE terminal` and type `matlab`. **HOWEVER**, if your have sudo privilages you won't be able to write and read stuff in the NAS! 
-- You can give sudo privilages to your user. Beware you will give admin privilages to your password-protected. From the terminal where you are a root user (e.g. powersell in Windows where you did ssh to the machine, do `sudo usermod -aG sudo <user>` 
-- Then in the graphical environment you can do `sudo -s` and type in the password you set up for your user
-- Then in MATE terminal you should be able to open Matlab as admin. This is not ideal and there might be other ways. But so far Matlab cannot read or write in the NAS without openining it as admin
+
+### 1.7 Matlab  
+- Open MATE Terminal 
+- Type `matlab`
+- Wait a bit. 
+- Do some science
 
 ## 2 Working in the Linux Virtual Machine
 With the right workflow the need for the VM graphical environment will be minimal
+
+**IMPORTANT!**
+You must keep the VM up to date. When initiating it, do: 
+- Check and install updates `sudo apt update && sudo apt upgrade -y`
+- Reboot the machine `sudo reboot` 
+
+
 
 ### Graphical environment limitations
 We use this environment to have more user friendly access some toolboxes, script running and troubleshooting. 

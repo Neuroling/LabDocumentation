@@ -437,8 +437,8 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#matlab-and-nas-permissions-issues">
-     1.7 Matlab and NAS Permissions issues
+    <a class="reference internal nav-link" href="#matlab">
+     1.7 Matlab
     </a>
    </li>
   </ul>
@@ -527,8 +527,8 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#matlab-and-nas-permissions-issues">
-     1.7 Matlab and NAS Permissions issues
+    <a class="reference internal nav-link" href="#matlab">
+     1.7 Matlab
     </a>
    </li>
   </ul>
@@ -626,8 +626,10 @@ It is the responsability the user to keep the VM up to date! some of the regular
 <h4>via remote desktop<a class="headerlink" href="#via-remote-desktop" title="Permalink to this headline">#</a></h4>
 <ul class="simple">
 <li><p>In the VM linux console: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">xrdp</span></code></p></li>
-<li><p>In the <strong>science cloud dashboard</strong>: go to <em>Access &amp; security</em> and then to create a new group and <em>Manage rules</em> there you can create a custom TCP rule with the port 3389. Direction = ingress. Create the rule and delete other rules in that group</p></li>
-<li><p>In the <strong>science cloud dashboard</strong>: go to your instance and <em>edit security groups</em> . Add the newly created group together wtih the default group into the VM groups</p></li>
+<li><p>In the <strong>science cloud dashboard</strong>: go to <em>Access &amp; security</em> and then to create a new group. It should have a 2 ‘egresss’ fields. Then go to and <em>Manage rules</em> there you can create a custom TCP rule with the port 3389. Direction = ingress. Create the rule. The group should only have those two default egress rules and one ingress with 3389</p></li>
+<li><p>In the <strong>science cloud dashboard</strong>: go to your instance and <em>edit security groups</em> . Add the newly created group together with the default group into the VM groups</p></li>
+<li><p>You will need to be in the machine with ssh (in windows power shell <code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">ubuntu&#64;&lt;instance</span> <span class="pre">ip&gt;</span></code></p></li>
+<li><p>Then you can open remote desktop and access the machine with: <code class="docutils literal notranslate"><span class="pre">&lt;ip&gt;:3389</span></code></p></li>
 </ul>
 </section>
 </section>
@@ -635,23 +637,30 @@ It is the responsability the user to keep the VM up to date! some of the regular
 <h3>1.6. Attach a NAS<a class="headerlink" href="#attach-a-nas" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">cifs-utils</span></code></p></li>
-<li><p>If not created yet create the directory <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">mkdir</span> <span class="pre">/mnt/smbdir</span></code></p></li>
-<li><p>Mount the NAS: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">mount</span> <span class="pre">-t</span> <span class="pre">cifs</span> <span class="pre">-o</span> <span class="pre">rw,user=&lt;uzh_username&gt;,uid=&lt;instance_username&gt;</span> <span class="pre">//&lt;nas_address&gt;</span> <span class="pre">/mnt/smbdir</span></code> ( <em>uid</em> will most likely be ‘ubuntu’)</p></li>
+<li><p>If not created yet, create the directory <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">mkdir</span> <span class="pre">/mnt/smbdir</span></code></p></li>
+<li><p>Mount the NAS: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">mount</span> <span class="pre">-t</span> <span class="pre">cifs</span> <span class="pre">-o</span> <span class="pre">rw,user=&lt;uzh_username&gt;,uid=&lt;user&gt;</span> <span class="pre">//&lt;nas_address&gt;</span> <span class="pre">/mnt/smbdir</span></code> ( user will be your ubuntu user id)
+e.g., <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">mount</span> <span class="pre">-t</span> <span class="pre">cifs</span> <span class="pre">-o</span> <span class="pre">rw,user=gfraga,uid=pepitogrillo</span> <span class="pre">//idnas12.d.uzh.ch/XX$</span> <span class="pre">/mnt/smbdir</span></code></p></li>
 </ul>
 </section>
-<section id="matlab-and-nas-permissions-issues">
-<h3>1.7 Matlab and NAS Permissions issues<a class="headerlink" href="#matlab-and-nas-permissions-issues" title="Permalink to this headline">#</a></h3>
+<section id="matlab">
+<h3>1.7 Matlab<a class="headerlink" href="#matlab" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
-<li><p>To open Matlab in the graphical envirnment you need to open <code class="docutils literal notranslate"><span class="pre">MATE</span> <span class="pre">terminal</span></code> and type <code class="docutils literal notranslate"><span class="pre">matlab</span></code>. <strong>HOWEVER</strong>, if your have sudo privilages you won’t be able to write and read stuff in the NAS!</p></li>
-<li><p>You can give sudo privilages to your user. Beware you will give admin privilages to your password-protected. From the terminal where you are a root user (e.g. powersell in Windows where you did ssh to the machine, do <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">usermod</span> <span class="pre">-aG</span> <span class="pre">sudo</span> <span class="pre">&lt;user&gt;</span></code></p></li>
-<li><p>Then in the graphical environment you can do <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">-s</span></code> and type in the password you set up for your user</p></li>
-<li><p>Then in MATE terminal you should be able to open Matlab as admin. This is not ideal and there might be other ways. But so far Matlab cannot read or write in the NAS without openining it as admin</p></li>
+<li><p>Open MATE Terminal</p></li>
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">matlab</span></code></p></li>
+<li><p>Wait a bit.</p></li>
+<li><p>Do some science</p></li>
 </ul>
 </section>
 </section>
 <section id="working-in-the-linux-virtual-machine">
 <h2>2 Working in the Linux Virtual Machine<a class="headerlink" href="#working-in-the-linux-virtual-machine" title="Permalink to this headline">#</a></h2>
 <p>With the right workflow the need for the VM graphical environment will be minimal</p>
+<p><strong>IMPORTANT!</strong>
+You must keep the VM up to date. When initiating it, do:</p>
+<ul class="simple">
+<li><p>Check and install updates <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">update</span> <span class="pre">&amp;&amp;</span> <span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">upgrade</span> <span class="pre">-y</span></code></p></li>
+<li><p>Reboot the machine <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">reboot</span></code></p></li>
+</ul>
 <section id="graphical-environment-limitations">
 <h3>Graphical environment limitations<a class="headerlink" href="#graphical-environment-limitations" title="Permalink to this headline">#</a></h3>
 <p>We use this environment to have more user friendly access some toolboxes, script running and troubleshooting.
